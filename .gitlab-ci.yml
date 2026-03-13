@@ -1,0 +1,14 @@
+image: golang:alpine
+
+stages:
+  - build
+
+
+go_build:
+  stage: build
+  script:
+    - GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o goBOT main.go
+    - zip goBOT.zip goBOT
+  artifacts:
+    paths:
+      - goBOT.zip
